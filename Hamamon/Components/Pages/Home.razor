@@ -1,0 +1,36 @@
+﻿@page "/"
+
+<PageTitle>PokeList</PageTitle>
+
+<section style="min-height: 100vh; width: 100%; background: #525252" class="pokemon-section">
+
+    <MudStack Class="py-2" Row Justify="Justify.Center">
+        <MudText Class="pixelify" Typo="Typo.h1" Style="color: #fff">PokeList</MudText>
+    </MudStack>
+
+    <MudGrid Justify="Justify.SpaceAround" Spacing="0" >
+        
+        <MudItem xs="8">
+            <MudGrid Justify="Justify.Center" Spacing="0" Class="pokemon-grid">
+                @for (int i = 1; i <= 151; i++)
+                {
+                    var link = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/{i}.png";
+                    var id = i;
+
+                    <MudItem xs="12" sm="6" md="4" lg="4" xl="3" Class="max-width-item">
+                        <div class="pokemon-item" style="width: 100%; height: 100%; position: relative!important;">
+                            <MudLink Href="@($"/pkmn-detail/{id}")">
+                                <MudImage Class="sprite centered" Width="320" Src="@link" />
+                            </MudLink>
+                        </div>
+                    </MudItem>
+                }
+            </MudGrid>
+        </MudItem>
+
+    </MudGrid>
+
+</section>
+
+
+
