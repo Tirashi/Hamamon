@@ -1,11 +1,12 @@
 ﻿@page "/"
+@using Hamamon.Components.HamaComponent
 
 <PageTitle>PokeList</PageTitle>
 
 <section style="min-height: 100vh; width: 100%; background: #525252" class="pokemon-section">
 
     <MudStack Class="py-2" Row Justify="Justify.Center">
-        <MudText Class="pixelify" Typo="Typo.h1" Style="color: #fff">PokeList</MudText>
+        <MudText Class="pixelify" Typo="Typo.h1" Style="color: #fff">Choose your pokémon</MudText>
     </MudStack>
 
     <MudGrid Justify="Justify.SpaceAround" Spacing="0" >
@@ -17,13 +18,7 @@
                     var link = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/{i}.png";
                     var id = i;
 
-                    <MudItem xs="12" sm="6" md="4" lg="4" xl="3" Class="max-width-item">
-                        <div class="pokemon-item" style="width: 100%; height: 100%; position: relative!important;">
-                            <MudLink Href="@($"/pkmn-detail/{id}")">
-                                <MudImage Class="sprite centered" Width="320" Src="@link" />
-                            </MudLink>
-                        </div>
-                    </MudItem>
+                    <HamaItem Id="@id" Src="@link" />
                 }
             </MudGrid>
         </MudItem>

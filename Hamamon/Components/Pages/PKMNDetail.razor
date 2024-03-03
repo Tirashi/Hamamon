@@ -1,17 +1,34 @@
-﻿@page "/pkmn-detail/{Id:int}"
+﻿@page "/layout/{Id:int}"
 @using SkiaSharp
 
-<PageTitle>Details</PageTitle>
+<PageTitle>Hamma layout</PageTitle>
 
 
 
 
 <div style="width: 100%; min-height: calc(100vh - 64px); position: relative!important; background: #424242;">
 
-    <h3>PKMNDetail</h3>
+    <h3>Layout</h3>
 
     <MudGrid Justify="Justify.SpaceAround" Spacing="0">
-        <MudItem>
+        <MudItem xs="2">
+            <MudText Class="pixelify" Typo="Typo.h5" Style="color: #fff">
+                Palette de couleur
+            </MudText>
+            <MudGrid Spacing="2">
+                
+                @foreach (var color in ColorList.Distinct())
+                {
+                    <MudItem xs="3">
+                        <div style="@($"height: 50px!important; width:50px!important; background: {color}; border: thin solid #424242!important; border-radius: 5px;")">
+
+                        </div>
+                    </MudItem>
+                }
+            </MudGrid>
+            
+        </MudItem>
+        <MudItem xs="8">
             <div>
                 @if (Image != null)
                 {
@@ -39,6 +56,7 @@
 </div>
 
 @code {
+
     [Parameter]
     public int Id { get; set; }
 

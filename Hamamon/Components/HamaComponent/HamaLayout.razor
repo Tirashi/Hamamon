@@ -1,0 +1,58 @@
+﻿@using SkiaSharp
+
+<div>
+    @if (Image != null)
+    {
+        <table style="border-collapse: collapse;">
+            <tbody>
+                @{
+                    int yy = 0;
+                    for (int y = 0; y < Image.Height; y++)
+                    {
+                        <tr>
+                            @for (int x = 0; x < Image.Width; x++, yy++)
+                            {
+                                <td style="@($"height: 25px!important; width:25px!important; background: {ColorList[yy]}; border: thin solid #424242!important;")"></td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    public string Link => $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/{Id}.png";
+
+    public List<string> ColorList { get; set; } = [];
+
+    public SKBitmap Image { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        HttpClient client = new HttpClient();
+        var stream = await client.GetStreamAsync(Link);
+
+        var ms = new MemoryStream();
+
+        await stream.CopyToAsync(ms);
+        ms.Position = 0;
+
+        Image = SKBitmap.Decode(new SKManagedStream(ms));
+
+        for (int y = 0; y < Image.Height; y++)
+        {
+            for (int x = 0; x < Image.Width; x++)
+            {
+                var pixel = Image.GetPixel(x, y);
+                var color = System.Drawing.Color.FromArgb((int)pixel.Red, (int)pixel.Green, (int)pixel.Blue);
+                ColorList.Add($"#{color.R:X2}{color.G:X2}{color.B:X2}");
+            }
+        }
+    }
+}

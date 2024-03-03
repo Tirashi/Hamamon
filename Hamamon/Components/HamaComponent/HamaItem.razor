@@ -1,0 +1,17 @@
+﻿<MudItem xs="12" sm="6" md="4" lg="4" xl="3" Class="max-width-item">
+    <div class="pokemon-item" style="width: 100%; height: 100%; position: relative!important;">
+        <MudLink Href="@($"/layout/{@Id}")">
+            <MudImage Class="sprite centered" Width="320" Src="@Src" />
+        </MudLink>
+    </div>
+</MudItem>
+
+@code {
+
+    [Parameter]
+    public string Src { get; set; } = "";
+
+    [Parameter]
+    public int Id { get; set; }
+
+}
