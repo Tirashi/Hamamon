@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hamamon")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc589d131cc211dae692ac9b7dcea1d0e8209793")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84572bb7954eeb0f22ee4d0f80675060f74075cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hamamon")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hamamon")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

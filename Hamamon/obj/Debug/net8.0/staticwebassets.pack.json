@@ -1,15 +1,15 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Rudy et Pauline\\Hamamon\\Hamamon\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Hamamon.bundle.scp.css",
+      "Id": "C:\\Users\\rudy.duboc\\source\\repos\\BlazorAppTestAgain\\Hamamon\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Hamamon.bundle.scp.css",
       "PackagePath": "staticwebassets\\Hamamon.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\Rudy et Pauline\\Hamamon\\Hamamon\\wwwroot\\app.css",
+      "Id": "C:\\Users\\rudy.duboc\\source\\repos\\BlazorAppTestAgain\\Hamamon\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "C:\\Users\\Rudy et Pauline\\Hamamon\\Hamamon\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\rudy.duboc\\source\\repos\\BlazorAppTestAgain\\Hamamon\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {

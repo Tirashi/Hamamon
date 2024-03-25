@@ -137,3 +137,4 @@ C:\Users\Rudy et Pauline\Hamamon\Hamamon\obj\Debug\net8.0\Hamamon.pdb
 C:\Users\Rudy et Pauline\Hamamon\Hamamon\obj\Debug\net8.0\Hamamon.genruntimeconfig.cache
 C:\Users\Rudy et Pauline\Hamamon\Hamamon\obj\Debug\net8.0\ref\Hamamon.dll
 C:\Users\Rudy et Pauline\Hamamon\Hamamon\obj\Debug\net8.0\Hamamon.csproj.Up2Date
+C:\Users\rudy.duboc\source\repos\BlazorAppTestAgain\Hamamon\obj\Debug\net8.0\Hamamon.sourcelink.json
