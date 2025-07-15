@@ -1,4 +1,5 @@
 @import 'https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=VT323&display=swap';
 
 .sprite {
     image-rendering: pixelated;
@@ -15,7 +16,7 @@
 }
 
 .pixelify, .pixelify * {
-    font-family: 'Pixelify Sans', sans-serif !important;
+    font-family: 'VT323', sans-serif !important;
     font-weight: 300 !important;
 }
 

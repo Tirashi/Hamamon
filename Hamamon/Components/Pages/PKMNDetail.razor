@@ -1,50 +1,129 @@
-﻿@page "/pkmn-detail/{Id:int}"
+﻿@page "/layout/{Id:int}"
+@using Hamamon.Services
 @using SkiaSharp
 
-<PageTitle>Details</PageTitle>
-
-
+<PageTitle>Hamma layout</PageTitle>
 
 
 <div style="width: 100%; min-height: calc(100vh - 64px); position: relative!important; background: #424242;">
 
-    <h3>PKMNDetail</h3>
 
     <MudGrid Justify="Justify.SpaceAround" Spacing="0">
-        <MudItem>
-            <div>
-                @if (Image != null)
-                {
-                    <table style="border-collapse: collapse;">
-                        <tbody>
-                            @{
-                                int yy = 0;
-                                for (int y = 0; y < Image.Height; y++)
-                                {
-                                    <tr>
-                                        @for (int x = 0; x < Image.Width; x++, yy++)
-                                        {
-                                            <td style="@($"height: 25px!important; width:25px!important; background: {ColorList[yy]}; border: thin solid #424242!important;")"></td>
-                                        }
-                                    </tr>
-                                }
-                            }
-                        </tbody>
-                    </table>
-                }
-            </div>
+        <MudItem xs="2">
+            <MudText Class="pixelify" Typo="Typo.h5" Style="color: #fff">
+                Palette de couleur
+            </MudText>
+            @if(OriginalPalette)
+            {
+                <MudGrid Spacing="2">
+
+                    @foreach (var color in ColorList.Distinct())
+                    {
+                        <MudItem xs="3">
+                            <div style="@($"height: 50px!important; width:50px!important; background: {color}; border: thin solid #424242!important; border-radius: 5px;")">
+                            </div>
+                        </MudItem>
+                    }
+                </MudGrid>
+            }
+            else
+            {
+                <MudGrid Spacing="2">
+
+                    @foreach (var color in HamaColorRGBList.Distinct())
+                    {
+                        <MudItem xs="3">
+                            <div style="@($"height: 50px!important; width:50px!important; background: {color}; border: thin solid #424242!important; border-radius: 5px;")">
+                            </div>
+                        </MudItem>
+                    }
+                </MudGrid>
+            }
+            
+
+            <MudItem>
+                <MudText Class="pixelify" Typo="Typo.h5" Style="color: #fff">
+                    Palette à utiliser
+                </MudText>
+                <MudSwitch @bind-Value="@OriginalPalette" Color="Color.Success">
+                    <MudText Class="pixelify" Typo="Typo.h6" Style="color: #fff">
+                        Palette original
+                    </MudText>
+                </MudSwitch>
+            </MudItem>
+            
         </MudItem>
+        @if(OriginalPalette)
+        {
+            <MudItem xs="8">
+                <div>
+                    @if (Image != null)
+                    {
+                        <table style="border-collapse: collapse;">
+                            <tbody>
+                                @{
+                                    int yy = 0;
+                                    for (int y = 0; y < Image.Height; y++)
+                                    {
+                                        <tr>
+                                            @for (int x = 0; x < Image.Width; x++, yy++)
+                                            {
+                                                <td style="@($"height: 25px!important; width:25px!important; background: {ColorList[yy]}; border: thin solid #424242!important;")"></td>
+                                            }
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </MudItem>
+        }
+        else
+        {
+            <MudItem xs="8">
+                <div>
+                    @if (Image != null)
+                    {
+                        <table style="border-collapse: collapse;">
+                            <tbody>
+                                @{
+                                    int yy = 0;
+                                    for (int y = 0; y < Image.Height; y++)
+                                    {
+                                        <tr>
+                                            @for (int x = 0; x < Image.Width; x++, yy++)
+                                            {
+                                                <td style="@($"height: 25px!important; width:25px!important; background: {HamaColorRGBList[yy]}; border: thin solid #424242!important;")"></td>
+                                            }
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </MudItem>
+        }       
+       
+        
     </MudGrid>    
 
 </div>
 
 @code {
+
     [Parameter]
     public int Id { get; set; }
 
     public string Link => $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/{Id}.png";
 
     public List<string> ColorList { get; set; } = [];
+
+    public List<string> HamaColorRGBList { get; set; } = [];
+    public List<string> HamaColorHueList { get; set; } = [];
+
+    public bool OriginalPalette { get; set; } = true;
 
     public SKBitmap Image { get; set; } = null!;
 
@@ -69,5 +148,9 @@
                 ColorList.Add($"#{color.R:X2}{color.G:X2}{color.B:X2}");
             }
         }
+
+        var paletteConverterService = new PaletteConverterService();
+        HamaColorHueList = paletteConverterService.ConvertToHamaColorByHue(ColorList);
+        HamaColorRGBList = paletteConverterService.ConvertToHamaColorByRGB(ColorList);
     }
 }
