@@ -1,14 +1,16 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
     <MudAppBar>
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />        
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudSpacer />
+        <MudSwitch @bind-Value="_isDarkMode" ThumbIcon="@(_isDarkMode==true ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)" ThumbIconColor="@(_isDarkMode==true ? Color.Dark : Color.Warning)"></MudSwitch>
     </MudAppBar>
-    
+
     <MudDrawer @bind-Open="@_drawerOpen" Elevation="1" Color="Color.Dark">
         <MudDrawerHeader>
             <MudText Class="pixelify" Typo="Typo.h5">Hamamon</MudText>
@@ -23,6 +25,7 @@
 
 @code {
     bool _drawerOpen = false;
+    bool _isDarkMode = false;
 
     void DrawerToggle()
     {
